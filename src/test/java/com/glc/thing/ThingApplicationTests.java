@@ -125,6 +125,28 @@ class ThingApplicationTests {
 		assertEquals(cut.getDescription(), gottenThing.getDescription());
 	}
 	
+	//# Jeff Code 
+
+	// @Test
+	// void canUpdateAThing(){
+	// 	Long myId = 1L;
+	// 	String myName = "table";
+	// 	String myDescription = "this is a table";
+	// 	Long myQuantity = 10L;
+	// 	Thing cut = Thing.builder()
+	// 						.id(myId)
+	// 						.name(myName)
+	// 						.description(myDescription)
+	// 						.quantity(myQuantity)
+	// 						.build();
+	// 	given(thingRepository.findByName(myName)).willReturn(Optional.of(cut));
+	// 	given(thingRepository.save(cut)).willReturn(cut);
+	// 	Thing updatedThing = thingServiceImpl.updateThing(cut);
+	// 	assertEquals(cut.getName(), updatedThing.getName());
+	// 	assertEquals(cut.getDescription(), updatedThing.getDescription());
+	// }
+
+	//# Hunain Code
 	@Test
 	void canUpdateAThing(){
 		Long myId = 1L;
@@ -137,7 +159,7 @@ class ThingApplicationTests {
 							.description(myDescription)
 							.quantity(myQuantity)
 							.build();
-		given(thingRepository.findByName(myName)).willReturn(Optional.of(cut));
+		given(thingRepository.findById(myId)).willReturn(Optional.of(cut));
 		given(thingRepository.save(cut)).willReturn(cut);
 		Thing updatedThing = thingServiceImpl.updateThing(cut);
 		assertEquals(cut.getName(), updatedThing.getName());

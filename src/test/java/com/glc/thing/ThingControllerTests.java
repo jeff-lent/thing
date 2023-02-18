@@ -33,8 +33,6 @@ public class ThingControllerTests {
     @Autowired
     private ObjectMapper objectMapper;
 
-    private JacksonTester<Thing> jsonThing;
-
     @Test
     public void postANewThing() throws Exception{
         Thing thing = Thing.builder()
