@@ -26,14 +26,27 @@ public class ThingServiceImpl implements ThingService {
         return thingRepository.getReferenceById(id);
     }
 
+    //# Jeff Code
+
+    // public Thing updateThing(Thing thing) {
+    //     //TODO this needs to be cleaned up
+    //     Optional<Thing> savedThing = thingRepository.findByName(thing.getName()); 
+    //     if(savedThing.isEmpty()){
+    //         throw new InvalidConfigurationPropertyValueException("Name", thing.getName(), "A thing named "+thing.getName()+" does not already exist in the database.");
+    //     }
+    //     return thingRepository.save(thing);
+    // }
+
+    //# Hunain Code
     public Thing updateThing(Thing thing) {
         //TODO this needs to be cleaned up
-        Optional<Thing> savedThing = thingRepository.findByName(thing.getName()); 
+        Optional<Thing> savedThing = thingRepository.findById(thing.getId()); 
         if(savedThing.isEmpty()){
-            throw new InvalidConfigurationPropertyValueException("Name", thing.getName(), "A thing named "+thing.getName()+" does not already exist in the database.");
+            throw new InvalidConfigurationPropertyValueException("Id", thing.getId(), "A thing id "+thing.getId()+" does not already exist in the database.");
         }
         return thingRepository.save(thing);
     }
+
 
     public void deleteThing(Long id){
         thingRepository.deleteById(id);

@@ -9,12 +9,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
-
 import org.hibernate.annotations.UpdateTimestamp;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.source.InvalidConfigurationPropertyValueException;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -47,8 +47,9 @@ public class ThingControllerTests {
         response.andDo(print())
             .andExpect(status().isCreated())
             .andExpect(jsonPath("$.name",is(thing.getName())))
-            .andExpect(jsonPath("$.description",is(thing.getDescription())));
-           // .andExpect(jsonPath("$.quantity", is(thing.getQuantity()))); TODO figure how to make this work with LONGS!
+            .andExpect(jsonPath("$.description",is(thing.getDescription())))
+           .andExpect(jsonPath("$.quantity", is(thing.getQuantity().intValue()))); 
+          // TODO figure how to make this work with LONGS!
     }
 
     @Test
